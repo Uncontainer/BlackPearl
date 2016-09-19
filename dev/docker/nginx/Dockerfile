@@ -18,14 +18,6 @@ RUN set -e;\
     touch /home/deployer/.ssh/known_hosts ;\
     ssh-keyscan bitbucket.org > /home/deployer/.ssh/known_hosts
 
-
-# Get SETUP/nginx in here 
-RUN set -e;\
-    git -c /home/deployer clone git@bitbucket.org:sandys/docker-setup.git ;\
-    cp /home/deployer/docker-setup/SETUP/nginx /etc/nginx ;\
-    rm -rf /home/deployer/docker-setup/
-
-
 RUN set -e;
     mkdir -p /opt/nginx/sources \
     /var/lib/nginx/body ;\
@@ -51,3 +43,7 @@ RUN set -e;
     zlib1g-dbg \
     zlib1g-dev \
     libgeoip-dev
+
+ADD conf /etc/nginx
+
+CMD nginx -g 'daemon off;'
