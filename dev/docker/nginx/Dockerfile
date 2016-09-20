@@ -14,6 +14,7 @@ RUN set -e;\
     wget\
     git\   
     zsh \
+    unzip \
     libpcre3 \
     libpcre3-dev \
     zlib1g \
