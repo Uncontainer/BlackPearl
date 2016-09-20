@@ -13,6 +13,7 @@ RUN set -e;\
     build-essential\
     wget\
     git\   
+    zsh \
     libpcre3 \
     libpcre3-dev \
     zlib1g \
