@@ -6,9 +6,10 @@ ADD build.sh  /opt/nginx/
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN mkdir -p /opt/nginx/sources \
+RUN apt-get update && apt-get install -y aptitude;\
+    mkdir -p /opt/nginx/sources \
     /var/lib/nginx/body ;\
-    apt-get update && apt-get -y  install \
+    aptitude install -y \
     build-essential \
     wget \
     git \
@@ -19,8 +20,18 @@ RUN mkdir -p /opt/nginx/sources \
     zlib1g-dbg \
     zlib1g-dev \
     libgeoip-dev ;\
-    chmod +x /opt/nginx/build.sh ;\
-    ./opt/nginx/build.sh
+    chmod +x /opt/nginx/build.sh &&\
+    ./opt/nginx/build.sh ;\
+    aptitude -fy remove \
+    build-essential\
+    wget\
+    git\   
+    libpcre3 \
+    libpcre3-dev \
+    zlib1g \
+    zlib1g-dbg \
+    zlib1g-dev \
+    libgeoip-dev
 
 ADD conf /etc/nginx
 
