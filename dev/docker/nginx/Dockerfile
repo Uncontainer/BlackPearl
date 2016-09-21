@@ -4,8 +4,6 @@ MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
 
 ADD build.sh  /opt/nginx/
 
-ADD index.html /usr/share/nginx/html
-
 RUN chmod +x /opt/nginx/build.sh
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -33,6 +31,8 @@ RUN apt-get update && apt-get install -y aptitude;\
     build-essential\
     wget\
     git
+
+ADD index.html /usr/share/nginx/html
 
 ADD nginx.conf /etc/nginx/nginx.conf
 
