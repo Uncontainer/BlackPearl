@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y aptitude;\
     mkdir -p /opt/nginx/sources \
     /var/lib/nginx/body \
     /usr/share/nginx/html \
-    /etc/nginx/ssl 
+    /etc/nginx/ssl \
     /etc/nginx/sites-available \
     /etc/nginx/sites-enabled;\
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt ;\
