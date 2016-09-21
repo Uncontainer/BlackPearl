@@ -35,12 +35,17 @@ COPY python /app
 
 #RUN rbenv install 2.3.0 && rbenv global 2.3.0 && rbenv rehash && gem install bundle --no-ri --no-rdoc && gem update --system --no-ri --no-rdoc 
 
+RUN pip install python-dateutil && \
+    pip install https://github.com/s3tools/s3cmd/archive/master.zip
+
+
+# virtualenv
 RUN easy_install virtualenv
 
 RUN /usr/bin/virtualenv /app/venv
 
 RUN /app/venv/bin/easy_install pip
 
-RUN pip install -r /app/requirements.txt
+RUN /app/venv/bin/pip install -r /app/requirements.txt
 
 CMD uwsgi --chdir /app --ini /app/app.ini --plugins python --limit-as 512

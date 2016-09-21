@@ -8,11 +8,4 @@ cd Python-2.7.10 && \
 
 # Make the package.
 make && \
-make install && \
-
-/opt/python/bin/python -m ensurepip && \
-/opt/python/bin/pip install --upgrade pip && \
-/opt/python/bin/pip install virtualenv && \
-
-/opt/python/bin/pip install python-dateutil && \
-/opt/python/bin/pip install https://github.com/s3tools/s3cmd/archive/master.zip
+make install
