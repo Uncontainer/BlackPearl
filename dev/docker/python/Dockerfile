@@ -4,6 +4,8 @@ MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
 
 ADD build.sh  /opt/python/
 
+RUN chmod +x /opt/python/build.sh
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
@@ -18,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
     build-essential ;\
     mkdir -p /opt/python/sources ;\
-    chmod +x /opt/python/build.sh ;\
     ./opt/python/build.sh
 
 COPY python /app
