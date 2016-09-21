@@ -41,7 +41,7 @@ RUN pip install python-dateutil && \
 # virtualenv
 RUN easy_install virtualenv
 
-RUN /usr/bin/virtualenv /app/venv
+RUN virtualenv /app/venv
 
 RUN /app/venv/bin/easy_install pip
 
