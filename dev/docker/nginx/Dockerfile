@@ -26,13 +26,7 @@ RUN apt-get update && apt-get install -y aptitude;\
     aptitude -fy remove \
     build-essential\
     wget\
-    git\   
-    libpcre3 \
-    libpcre3-dev \
-    zlib1g \
-    zlib1g-dbg \
-    zlib1g-dev \
-    libgeoip-dev
+    git
 
 ADD conf /etc/nginx
 
