@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y aptitude;\
     /etc/nginx/ssl \
     /etc/nginx/sites-available \
     /etc/nginx/sites-enabled;\
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt ;\
     aptitude install -y \
     build-essential \
     wget \
@@ -33,6 +32,10 @@ RUN apt-get update && apt-get install -y aptitude;\
     build-essential\
     wget\
     git
+
+COPY nginx.crt /etc/nginx/ssl/nginx.crt
+
+COPY nginx.key /etc/nginx/ssl/nginx.key
 
 COPY index.html /usr/share/nginx/html
 
