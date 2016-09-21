@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     python-dev \
     python-pip \
-    linux-headers \
     libssl-dev \
     zlib1g-dev \
     libbz2-dev \
