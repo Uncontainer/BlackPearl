@@ -1,0 +1,5 @@
+flask
+requests
+pyyaml
+jinja2
+werkzeug
