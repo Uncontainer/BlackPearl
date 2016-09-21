@@ -28,6 +28,6 @@ RUN apt-get update && apt-get install -y aptitude;\
     wget\
     git
 
-ADD conf /etc/nginx
+#ADD conf /etc/nginx
 
 CMD nginx -g 'daemon off;'
