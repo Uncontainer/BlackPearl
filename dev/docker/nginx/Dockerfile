@@ -4,18 +4,24 @@ MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
 
 ADD build.sh  /opt/nginx/
 
+ADD index.html /usr/share/nginx/html
+
 RUN chmod +x /opt/nginx/build.sh
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y aptitude;\
     mkdir -p /opt/nginx/sources \
-    /var/lib/nginx/body ;\
+    /var/lib/nginx/body \
+    /usr/share/nginx/html \
+    /etc/nginx/ssl ;\
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt ;\
     aptitude install -y \
     build-essential \
     wget \
     git \
     unzip \
+    openssl \
     libpcre3 \
     libpcre3-dev \
     zlib1g \
@@ -28,6 +34,6 @@ RUN apt-get update && apt-get install -y aptitude;\
     wget\
     git
 
-#ADD conf /etc/nginx
+ADD nginx.conf /etc/nginx/nginx.conf
 
 CMD nginx -g 'daemon off;'
