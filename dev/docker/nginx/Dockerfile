@@ -20,18 +20,7 @@ RUN mkdir -p /opt/nginx/sources \
     zlib1g-dev \
     libgeoip-dev ;\
     chmod +x /opt/nginx/build.sh ;\
-    ./opt/nginx/build.sh ;\
-    apt-get -y remove \
-    build-essential\
-    wget\
-    git\
-    unzip\
-    libpcre3 \
-    libpcre3-dev \
-    zlib1g \
-    zlib1g-dbg \
-    zlib1g-dev \
-    libgeoip-dev
+    ./opt/nginx/build.sh
 
 ADD conf /etc/nginx
 
