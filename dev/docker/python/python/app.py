@@ -18,7 +18,7 @@ class Jobs(db.Model):
     def __repr__(self):
         return 'Results %r>' % self.results
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://worker:redcarpet@10.94.86.19/workers'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://worker:redcarpet@postgres/workers'
 
 db.create_all()
 

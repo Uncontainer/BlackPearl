@@ -9,7 +9,7 @@ redis_url = 'redis://redis:6379'
 
 conn = StrictRedis.from_url(redis_url)
 
-postgres_url = 'postgresql://worker:redcarpet@10.94.86.19:5432/workers'
+postgres_url = 'postgresql://worker:redcarpet@postgres:5432/workers'
 
 postgres_con = sqlalchemy.create_engine(postgres_url, client_encoding='utf8')
 
