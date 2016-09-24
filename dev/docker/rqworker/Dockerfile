@@ -1,3 +1,3 @@
-FROM jkosgei/sandys-scheduler
+FROM jkosgei/sandys-python
 
 ENTRYPOINT python /app/worker.py
