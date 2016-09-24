@@ -7,3 +7,4 @@ rq
 redis
 sqlalchemy
 psycopg2
+Flask-SQLAlchemy
