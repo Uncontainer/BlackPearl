@@ -43,6 +43,7 @@ COPY python /app
 
 #RUN rbenv install 2.3.0 && rbenv global 2.3.0 && rbenv rehash && gem install bundle --no-ri --no-rdoc && gem update --system --no-ri --no-rdoc 
 
+WORKDIR /app
 
 RUN pip install -r /app/requirements.txt
 
