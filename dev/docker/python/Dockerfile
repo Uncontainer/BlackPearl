@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     python-dev \
     python-pip \
     libssl-dev \
-    liyaml-dev \
+    libyaml-dev \
     zlib1g-dev \
     libbz2-dev \
     libsqlite3-dev \
