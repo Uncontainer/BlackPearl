@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     aptitude \
     uwsgi-plugin-python \
     wget \
+    libpq-dev \
     python-dev \
     python-pip \
     libssl-dev \
