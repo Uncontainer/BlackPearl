@@ -3,3 +3,5 @@ requests
 pyyaml
 jinja2
 werkzeug
+rq
+redis

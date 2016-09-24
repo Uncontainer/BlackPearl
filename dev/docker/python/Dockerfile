@@ -10,16 +10,24 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
     git \
+    uwsgi \
+    aptitude \
+    uwsgi-plugin-python \
     wget \
     python-dev \
     python-pip \
     libssl-dev \
+    liyaml-dev \
     zlib1g-dev \
     libbz2-dev \
     libsqlite3-dev \
     build-essential ;\
     mkdir -p /opt/python/sources ;\
-    ./opt/python/build.sh
+    ./opt/python/build.sh &&\
+    aptitude -fy remove \
+    build-essential\
+    wget\
+    git
 
 COPY python /app
 
@@ -34,17 +42,7 @@ COPY python /app
 
 #RUN rbenv install 2.3.0 && rbenv global 2.3.0 && rbenv rehash && gem install bundle --no-ri --no-rdoc && gem update --system --no-ri --no-rdoc 
 
-RUN pip install python-dateutil && \
-    pip install https://github.com/s3tools/s3cmd/archive/master.zip
 
+RUN pip install -r /app/requirements.txt
 
-# virtualenv
-RUN easy_install virtualenv
-
-RUN virtualenv /app/venv
-
-RUN /app/venv/bin/easy_install pip
-
-RUN /app/venv/bin/pip install -r /app/requirements.txt
-
-CMD uwsgi --chdir /app --ini /app/app.ini --plugins python --limit-as 512
+ENTRYPOINT uwsgi --chdir /app --ini /app /app/app.ini --plugins python --limit-as 512
