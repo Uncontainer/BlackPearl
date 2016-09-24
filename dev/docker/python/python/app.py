@@ -1,28 +1,22 @@
 from flask import Flask
 from redis import Redis
 from rq import Queue
-import glob, requests
+from worker import conn, count_words_at_url
 
 app = Flask(__name__)
 
-r = redis.StrictRedis(host='redis', port=6379, db=0)
-
-q = Queue(connection=r)
+q = Queue(connection=conn)
 
 @app.route("/")
 def hello():
-    return "<h1 style='color:blue'>Hello There!</h1><br>"
+    conn.set('foo', 'bar')
+    return "<h1 style='color:blue'>Hello There!</h1><br>" , conn.get('foo')
 
 @app.route("/queue/<url>")
 def queue(url):
     job = q.enqueue(
              count_words_at_url, url)
-    print job.result
-    return job
+    return job.get_id()
 
-def count_words_at_url(url):
-    resp = requests.get(url)
-    return len(resp.text.split())
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0')
