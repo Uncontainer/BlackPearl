@@ -31,6 +31,8 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
     # docker build -t redcarpet/redcarpet-rqscheduler rqscheduler
     Builing nginx
     # docker build -t redcarpet/redcarpet-nginx nginx
+    Building redis
+    # docker build -t redcarpet/redcarpet-redis redis
 ```
 
 **_Postgres_**
