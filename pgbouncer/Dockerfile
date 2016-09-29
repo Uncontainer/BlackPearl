@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y aptitude;\
     build-essential \
     wget \
     git \
+    libtool \
     make ;\
     git clone https://github.com/pgbouncer/pgbouncer.git &&\
     cd pgbouncer &&\
