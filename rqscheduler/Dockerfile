@@ -1,4 +1,4 @@
-FROM jkosgei/sandys-python
+FROM redcarpet/redcarpet-python
 
 RUN pip install rq-scheduler
 
