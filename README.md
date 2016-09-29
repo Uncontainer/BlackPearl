@@ -8,29 +8,29 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 3. Run postgres for testing, can't access internal ip from within container
     # docker run --name postgres -e POSTGRES_USER=worker -e POSTGRES_PASSWORD=redcarpet -e POSTGRES_DB=workers -d postgres
 4. Run rqscheduler
-    # docker run -d --name rqscheduler -d --link redis:redis jkosgei/sandys-rqscheduler
+    # docker run -d --name rqscheduler -d --link redis:redis redcarpet/redcarpet-rqscheduler
 5. Run rqworker
-    # docker run -d --name rqworker -d --link postgres:postgres --link redis:redis jkosgei/sandys-rqworker
+    # docker run -d --name rqworker -d --link postgres:postgres --link redis:redis redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run -d --name flask --link postgres:postgres --link redis:redis jkosgei/sandys-python
+    # docker run -d --name flask --link postgres:postgres --link redis:redis redcarpet/redcarpet-python
 7. Run nginx (with https)
-    # docker run -d --name nginx --link flask:flask jkosgei/sandys-nginx
+    # docker run -d --name nginx --link flask:flask redcarpet/redcarpet-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
 ```
 
-**_Building_**
+*_Building_**
 ```
     Building the flask app
     # cd docker-setup/dev/docker
-    # docker build -t jkosgei/sandys-python python
+    # docker build -t redcarpet/redcarpet-python python
     Building rqworker
-    # docker build -t jkosgei/sandys-rqworker rqworker
+    # docker build -t redcarpet/redcarpet-rqworker rqworker
     Building rqscheduler
-    # docker build -t jkosgei/sandys-rqscheduler rqscheduler
+    # docker build -t redcarpet/redcarpet-rqscheduler rqscheduler
     Builing nginx
-    # docker build -t jkosgei/sandys-nginx nginx
+    # docker build -t redcarpet/redcarpet-nginx nginx
 ```
 
 **_Postgres_**
