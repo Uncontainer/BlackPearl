@@ -7,8 +7,8 @@
 
 # Compile against OpenSSL to enable NPN
 cd /opt/nginx/sources && \
-wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz && \
-tar -xzvf openssl-1.0.2g.tar.gz && \
+wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
+tar -xzvf openssl-1.0.2j.tar.gz && \
 
 # Download the Cache Purge module
 cd /opt/nginx/sources/ && \
@@ -31,22 +31,22 @@ make && make install && \
 
 
 cd /opt/nginx/sources && \
-wget https://github.com/simpl/ngx_devel_kit/archive/v0.2.19.tar.gz && \ 
-tar -zxvf v0.2.19.tar.gz && \
+wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz && \ 
+tar -zxvf v0.3.0.tar.gz && \
 
 
 cd /opt/nginx/sources && \
-wget https://github.com/openresty/lua-nginx-module/archive/v0.10.2.tar.gz && \ 
-tar -zxvf v0.10.2.tar.gz && \
+wget https://github.com/openresty/lua-nginx-module/archive/v0.10.6.tar.gz && \ 
+tar -zxvf v0.10.6.tar.gz && \
 
 # Get the Nginx source.
 #
 # Best to get the latest mainline release. Of course, your mileage may
 # vary depending on future changes
 cd /opt/nginx/sources/ && \
-wget http://nginx.org/download/nginx-1.9.12.tar.gz && \ 
-tar zxf nginx-1.9.12.tar.gz && \
-cd nginx-1.9.12  && \
+wget http://nginx.org/download/nginx-1.11.4.tar.gz && \ 
+tar zxf nginx-1.11.4.tar.gz && \
+cd nginx-1.11.4  && \
 
 # Configure nginx.
 #
@@ -91,12 +91,12 @@ cd nginx-1.9.12  && \
 --with-http_sub_module \
 --with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2' \
 --with-ld-opt='-Wl,-z,relro -Wl,--as-needed' \
---with-openssl=/opt/nginx/sources/openssl-1.0.2g \
---add-module=/opt/nginx/sources/ngx_pagespeed-1.10.33.6-beta \
+--with-openssl=/opt/nginx/sources/openssl-1.0.2j \
 --add-module=/opt/nginx/sources/ngx_cache_purge  \
---add-module=/opt/nginx/sources/lua-nginx-module-0.10.2  \
---add-module=/opt/nginx/sources/ngx_devel_kit-0.2.19 && \
+--add-module=/opt/nginx/sources/lua-nginx-module-0.10.6  \
+--add-module=/opt/nginx/sources/ngx_devel_kit-0.3.0 && \
 
 # Make the package.
 make && \
-make install
+make install && \
+exit $?
