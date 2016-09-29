@@ -1,11 +1,6 @@
 FROM debian:jessie
  
 MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
-
-ADD build.sh  /opt/python/
-
-RUN chmod +x /opt/python/build.sh
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
@@ -22,15 +17,9 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libbz2-dev \
     libsqlite3-dev \
-    build-essential ;\
-    mkdir -p /opt/python/sources ;\
-    ./opt/python/build.sh &&\
-    aptitude -fy remove \
-    build-essential\
-    wget\
-    git
+    build-essential
+    
 
-COPY python /app
 
 #RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
 
@@ -43,8 +32,22 @@ COPY python /app
 
 #RUN rbenv install 2.3.0 && rbenv global 2.3.0 && rbenv rehash && gem install bundle --no-ri --no-rdoc && gem update --system --no-ri --no-rdoc 
 
+
+ADD build.sh  /opt/python/
+RUN chmod +x /opt/python/build.sh
+RUN mkdir -p /opt/python/sources ;\
+    /opt/python/build.sh &&\
+    aptitude -fy remove \
+    build-essential\
+    wget\
+    git
+
+RUN  /opt/python/bin/python -m ensurepip 
+
+
+COPY python /app
 WORKDIR /app
+RUN /opt/python/bin/pip install -r /app/requirements.txt
+RUN /opt/python/bin/pip install --upgrade pip   
 
-RUN pip install -r /app/requirements.txt
-
-ENTRYPOINT uwsgi --chdir /app --ini /app /app/app.ini --plugins python --limit-as 512
+ENTRYPOINT /opt/python/bin/uwsgi --chdir /app --ini /app/app.ini  
