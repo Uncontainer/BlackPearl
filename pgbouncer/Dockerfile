@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y aptitude;\
     wget \
     git \
     libtool \
+    automake \
+    autotools-dev \
+    aclocal \
     make ;\
     git clone https://github.com/pgbouncer/pgbouncer.git &&\
     cd pgbouncer &&\
