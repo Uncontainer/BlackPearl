@@ -33,10 +33,11 @@ RUN apt-get update && apt-get install -y aptitude;\
     wget\
     git
 
-COPY conf/sites-available/production.redcarpetup.com /etc/nginx/sites-available/production.redcarpetup.com
+RUN mkdir -p /var/cache/nginx/cached  
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/ssl/nginx.crt /etc/nginx/ssl/nginx.crt
 COPY conf/ssl/nginx.key /etc/nginx/ssl/nginx.key
+COPY conf/sites-available/production.redcarpetup.com /etc/nginx/sites-available/production.redcarpetup.com
 RUN ln -s /etc/nginx/sites-available/production.redcarpetup.com /etc/nginx/sites-enabled/production.redcarpetup.com
 
 CMD nginx -g 'daemon off;'

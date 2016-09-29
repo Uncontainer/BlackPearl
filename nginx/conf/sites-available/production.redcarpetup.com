@@ -3,8 +3,8 @@ upstream prod_app {
 }
 
 upstream prod_api{
-  #server unix:///var/run/app/production_api.sock; 
-  server flask:9001;
+  server unix:///tmp/production_api.sock; 
+  #server flask:9001;
 }
 
 server {
