@@ -4,9 +4,11 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 ```
 1. Install and setup Postgres with database --> workers , user --> worker , password --> redcarpet
 2. Run redis container
-    # docker run -d --name redis redis
+    # docker run -d --name redis -v /var/host/data:/data redcarpet/redcarpet-redis
 3. Run postgres for testing, can't access internal ip from within container
     # docker run --name postgres -e POSTGRES_USER=worker -e POSTGRES_PASSWORD=redcarpet -e POSTGRES_DB=workers -d postgres
+    pgbouncer
+    # docker run --name postgres -d redcarpet/redcarpet-pgbouncer
 4. Run rqscheduler
     # docker run -d --name rqscheduler -d --link redis:redis redcarpet/redcarpet-rqscheduler
 5. Run rqworker
@@ -33,6 +35,8 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
     # docker build -t redcarpet/redcarpet-nginx nginx
     Building redis
     # docker build -t redcarpet/redcarpet-redis redis
+    Building pgbouncer
+    # docker build -t redcarpet/redcarpet-pgbouncer pgbouncer
 ```
 
 **_Postgres_**
