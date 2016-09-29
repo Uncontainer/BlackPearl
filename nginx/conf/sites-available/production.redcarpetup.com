@@ -110,7 +110,7 @@ server {
         proxy_set_header   SSL_CLIENT_CERT $ssl_client_cert;
         proxy_set_header   SSL_CLIENT_VERIFY $ssl_client_verify;
         proxy_set_header   SSL_SERVER_S_DN $ssl_client_s_dn;
-        proxy_pass http://prod_app; # match the name of upstream directive which is defined above
+        proxy_pass http://prod_api; # match the name of upstream directive which is defined above
   }
 
   location  /test {
