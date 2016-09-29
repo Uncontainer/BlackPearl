@@ -1,3 +1,3 @@
-FROM redcarpet/redcarpet-python
+FROM redcarpet/redcarpet-flask
 
 ENTRYPOINT python /app/worker.py

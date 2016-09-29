@@ -1,4 +1,4 @@
-FROM redcarpet/redcarpet-python
+FROM redcarpet/redcarpet-flask
 
 RUN pip install rq-scheduler
 

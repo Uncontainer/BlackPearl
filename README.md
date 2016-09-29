@@ -12,7 +12,7 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 5. Run rqworker
     # docker run -d --name rqworker -d --link postgres:postgres --link redis:redis redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run -d --name flask --link postgres:postgres --link redis:redis redcarpet/redcarpet-python
+    # docker run -d --name flask --link postgres:postgres --link redis:redis redcarpet/redcarpet-flask
 7. Run nginx (with https)
     # docker run -d --name nginx --link flask:flask redcarpet/redcarpet-nginx
 8. Get nginx container's ip
@@ -24,7 +24,7 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 ```
     Building the flask app
     # cd docker-setup/dev/docker
-    # docker build -t redcarpet/redcarpet-python python
+    # docker build -t redcarpet/redcarpet-flask flask 
     Building rqworker
     # docker build -t redcarpet/redcarpet-rqworker rqworker
     Building rqscheduler
