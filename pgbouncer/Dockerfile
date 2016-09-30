@@ -53,7 +53,6 @@ RUN         mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
   chown pgbouncer /var/run/pgbouncer 
 
 
-ADD         entrypoint.sh ./
 ADD         etc/pgbouncer /etc/pgbouncer
 
 #EXPOSE      6432
