@@ -57,4 +57,4 @@ ADD         entrypoint.sh ./
 ADD         etc/pgbouncer /etc/pgbouncer
 
 #EXPOSE      6432
-ENTRYPOINT  ["./entrypoint.sh"]
+ENTRYPOINT  ["pgbouncer", "-u", "pgbouncer", "/etc/pgbouncer/pgbouncer.ini"]
