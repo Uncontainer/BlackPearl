@@ -9,7 +9,9 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
     stunnel
     # docker run  --name stunnel  redcarpet/redcarpet-stunnel 
     pgbouncer
-    # docker run  --name pgbouncer --link stunnel:stunnel  redcarpet/redcarpet-pgbouncer 
+    # docker run  --name pgbouncer --link stunnel:stunnel -p 6000:6000  redcarpet/redcarpet-pgbouncer 
+    # to test pgbouncer, you can test "psql localhost:6000" and it should connect to the database that stunnel is connected to
+
 4. Run rqscheduler
     # docker run  --name rqscheduler  --link redis:redis redcarpet/redcarpet-rqscheduler
 5. Run rqworker
@@ -39,7 +41,7 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
     Building pgbouncer
     # docker build -t redcarpet/redcarpet-pgbouncer pgbouncer
     Building stunnel
-    #docker build -t redcarpet/redcarpet-stunnel stunnel   
+    #docker build -t redcarpet/redcarpet-stunnel stunnel   "
 ```
 
 **_Postgres_**
