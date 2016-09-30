@@ -4,19 +4,20 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 ```
 1. Install and setup Postgres with database --> workers , user --> worker , password --> redcarpet
 2. Run redis container
-    # docker run -d --name redis -v /var/host/data:/data redcarpet/redcarpet-redis
-3. Run postgres for testing, can't access internal ip from within container
-    # docker run --name postgres -e POSTGRES_USER=worker -e POSTGRES_PASSWORD=redcarpet -e POSTGRES_DB=workers -d postgres
+    # docker run  --name redis -v /var/host/data:/data redcarpet/redcarpet-redis
+3. Run stunnel and pgbouncer
+    stunnel
+    # docker run  --name stunnel  redcarpet/redcarpet-stunnel 
     pgbouncer
-    # docker run --name postgres -d redcarpet/redcarpet-pgbouncer
+    # docker run  --name pgbouncer --link stunnel:stunnel  redcarpet/redcarpet-pgbouncer 
 4. Run rqscheduler
-    # docker run -d --name rqscheduler -d --link redis:redis redcarpet/redcarpet-rqscheduler
+    # docker run  --name rqscheduler  --link redis:redis redcarpet/redcarpet-rqscheduler
 5. Run rqworker
-    # docker run -d --name rqworker -d --link postgres:postgres --link redis:redis redcarpet/redcarpet-rqworker
+    # docker run  --name rqworker  --link pgbouncer:pgbouncer --link redis:redis redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run -d --name flask --link postgres:postgres --link redis:redis redcarpet/redcarpet-flask
+    # docker run  --name flask --link pgbouncer:pgbouncer --link redis:redis redcarpet/redcarpet-flask
 7. Run nginx (with https)
-    # docker run -d --name nginx --link flask:flask redcarpet/redcarpet-nginx
+    # docker run  --name nginx --link flask:flask redcarpet/redcarpet-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
@@ -33,20 +34,22 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
     # docker build -t redcarpet/redcarpet-rqscheduler rqscheduler
     Builing nginx
     # docker build -t redcarpet/redcarpet-nginx nginx
-    Building redis
+    Building redi
     # docker build -t redcarpet/redcarpet-redis redis
     Building pgbouncer
     # docker build -t redcarpet/redcarpet-pgbouncer pgbouncer
+    Building stunnel
+    #docker build -t redcarpet/redcarpet-stunnel stunnel   
 ```
 
 **_Postgres_**
 ```
     # sudo su - postgres
     # createdb workers
-    # psql -d workers
+    # psql  workers
     # CREATE USER worker WITH PASSWORD 'redcarpet';
     # GRANT ALL PRIVILEGES ON DATABASE workers TO worker;
-    # sudo apt-get install libpq-dev
+    # sudo apt-get install libpqev
     # pip install -r requirements.txt
 ```
 
