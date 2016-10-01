@@ -60,4 +60,4 @@ ADD bin /bin
 RUN chmod +X /bin/entry.sh
 
 #EXPOSE      6432
-ENTRYPOINT /entry.sh
+ENTRYPOINT /bin/entry.sh
