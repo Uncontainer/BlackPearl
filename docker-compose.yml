@@ -23,6 +23,10 @@ services:
     - "6000:6000"
     depends_on:
       - stunnel
+    environment:
+     - DBNAME:workers
+     - USER:worker
+     - PASSWORD:redcarpet
     logging:
         driver: journald
   rqscheduler:
