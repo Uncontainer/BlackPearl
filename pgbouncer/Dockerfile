@@ -57,7 +57,7 @@ ADD         etc/pgbouncer /etc/pgbouncer
 
 ADD bin /bin
 
-RUN chmod +X /bin/entry.sh
+RUN chmod +x /bin/entry.sh
 
 #EXPOSE      6432
 ENTRYPOINT /bin/entry.sh
