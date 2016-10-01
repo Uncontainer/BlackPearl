@@ -8,22 +8,24 @@ Docker network setup
 2. Run redis container
     # mkdir -p /tmp/data
     # chown -R 999:999 /tmp/data
-    # docker run --net=poc --name redis -v /tmp/data:/redis -d redcarpet/redcarpet-redis
+    # docker run --rm   --net=poc --name redis -v /tmp/data:/redis  redcarpet/redcarpet-redis
 3. Run stunnel and pgbouncer
-    stunnel
-    # docker run --net=poc --name stunnel -d redcarpet/redcarpet-stunnel
     pgbouncer
-    # docker run --net=poc --name pgbouncer --link stunnel:stunnel -p 6000:6000 -d redcarpet/redcarpet-pgbouncer
+    # docker run --rm  --net=poc --name postgres -e POSTGRES_USER=redcarpetweb -e POSTGRES_PASSWORD=redcarpetweb123 -e POSTGRES_DB=web_new_development  postgres
+    stunnel
+    # docker run --rm   --net=poc --name stunnel  redcarpet/redcarpet-stunnel 
+    pgbouncer
+    # docker run --rm   --net=poc --name pgbouncer --link stunnel:stunnel -p 6000:6000  redcarpet/redcarpet-pgbouncer 
     # to test pgbouncer, you can test "psql localhost:6000" and it should connect to the database that stunnel is connected to
 
 4. Run rqscheduler
-    # docker run --net=poc --name rqscheduler  --link redis:redis -d redcarpet/redcarpet-rqscheduler
+    # docker run --rm   --net=poc --name rqscheduler  --link redis:redis  redcarpet/redcarpet-rqscheduler
 5. Run rqworker
-    # docker run --net=poc --name rqworker  --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-rqworker
+    # docker run --rm   --net=poc --name rqworker  --link pgbouncer:pgbouncer --link redis:redis  redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run --net=poc --name flask --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-flask
+    # docker run --rm   --net=poc --name flask --link pgbouncer:pgbouncer --link redis:redis  redcarpet/redcarpet-flask
 7. Run nginx (with https)
-    # docker run --net=poc --name nginx --link flask:flask -d redcarpet/redcarpet-nginx
+    # docker run --rm   --net=poc --name nginx --link flask:flask  redcarpet/redcarpet-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
