@@ -52,6 +52,8 @@ services:
     depends_on:
       - redis
       - postgres
+      - stunnel
+      - pgbouncer
     logging:
         driver: journald
   flask:
@@ -61,6 +63,7 @@ services:
     depends_on:
       - redis
       - postgres
+      - stunnel
       - pgbouncer
     logging:
         driver: journald
