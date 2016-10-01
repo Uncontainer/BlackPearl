@@ -1,3 +1,3 @@
 FROM redcarpet/redcarpet-flask
 
-ENTRYPOINT python /app/worker.py
+ENTRYPOINT /opt/python/bin/python /app/worker.py
