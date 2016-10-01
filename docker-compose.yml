@@ -1,0 +1,69 @@
+version: '2'
+
+services:
+  redis:
+    build: ./redis
+    image: redcarpet/redcarpet-redis
+    container_name: redis
+    logging:
+        driver: journald
+    volumes:
+      - /redis
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+    - POSTGRES_USER:actual_db_user
+    - POSTGRES_PASSWORD:actual_password
+    - POSTGRES_DB:actual_pg_db
+  stunnel:
+    build: ./stunnel
+    image: redcarpet/redcarpet-stunnel
+    container_name: stunnel
+    depends_on:
+      - postgres
+    logging:
+        driver: journald
+  pgbouncer:
+    build: ./pgbouncer
+    image: redcarpet/redcarpet-pgbouncer
+    container_name: pgbouncer
+    ports:
+    - "6000:6000"
+    depends_on:
+      - stunnel
+    logging:
+        driver: journald
+  rqscheduler:
+    build: ./rqscheduler
+    image: redcarpet/redcarpet-rqscheduler
+    container_name: rqscheduler
+    depends_on:
+      - redis
+    logging:
+        driver: journald
+  rqworker:
+    build: ./rqworker
+    image: redcarpet/redcarpet-rqworker
+    container_name: rqworker
+    depends_on:
+      - redis
+    logging:
+        driver: journald
+  flask:
+    build: ./flask
+    image: redcarpet/redcarpet-flask
+    container_name: flask
+    depends_on:
+      - redis
+      - pgbouncer
+    logging:
+        driver: journald
+  nginx:
+    build: ./nginx
+    image: redcarpet/redcarpet-nginx
+    container_name: nginx
+    depends_on:
+      - flask
+    logging:
+        driver: journald
