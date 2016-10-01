@@ -82,6 +82,6 @@ Docker network setup
 
 **_Run playbook_**
 ```
-    # ansible-playbook -i staging kube.cluster.yml --list-tasks
-    # ansible-playbook -s -i staging kube.cluster.yml
+    # ansible-playbook kube.cluster.yml --list-tasks
+    # ansible-playbook -s kube.cluster.yml
 ```
