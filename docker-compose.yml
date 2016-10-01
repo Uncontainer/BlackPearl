@@ -4,7 +4,7 @@ services:
   redis:
     build: ./redis
     image: redcarpet/redcarpet-redis
-    container_name: 
+    container_name: redis
     logging:
         driver: journald
     volumes:
@@ -13,9 +13,9 @@ services:
     image: postgres
     container_name: postgres
     environment:
-        POSTGRES_USER:actual_db_user
-        POSTGRES_PASSWORD:actual_password
-        POSTGRES_DB:actual_pg_db
+    - POSTGRES_USER:actual_db_user
+    - POSTGRES_PASSWORD:actual_password
+    - POSTGRES_DB:actual_pg_db
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
