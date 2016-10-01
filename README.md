@@ -13,17 +13,17 @@ Docker network setup
    stunnel
     # docker run -d --net=poc --name stunnel  redcarpet/redcarpet-stunnel
     pgbouncer
-    # docker run -d --net=poc --name pgbouncer --link stunnel:stunnel -p 6000:6000  redcarpet/redcarpet-pgbouncer
+    # docker run -d --net=poc --name pgbouncer -p 6000:6000  redcarpet/redcarpet-pgbouncer
     # to test pgbouncer, you can test "psql localhost:6000" and it should connect to the database that stunnel is connected to
 
 4. Run rqscheduler
-    # docker run -d --net=poc --name rqscheduler  --link redis:redis  redcarpet/redcarpet-rqscheduler
+    # docker run -d --net=poc --name rqscheduler redcarpet/redcarpet-rqscheduler
 5. Run rqworker
-    # docker run -d --net=poc --name rqworker  --link pgbouncer:pgbouncer --link redis:redis  redcarpet/redcarpet-rqworker
+    # docker run -d --net=poc --name rqworker redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run -d --net=poc --name flask --link pgbouncer:pgbouncer --link redis:redis  redcarpet/redcarpet-flask
+    # docker run -d --net=poc --name flask redcarpet/redcarpet-flask
 7. Run nginx (with https)
-    # docker run -d --net=poc --name nginx --link flask:flask  redcarpet/redcarpet-nginx
+    # docker run -d --net=poc --name nginx redcarpet/redcarpet-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
