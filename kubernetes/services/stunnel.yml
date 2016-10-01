@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    name: stunnel
+  name: stunnel
+  namespace: test
+spec: 
+  ports:
+    - port: 8432
+  selector: 
+    name: stunnel
