@@ -5,7 +5,13 @@
   apt_repository: repo='deb http://apt.kubernetes.io/ kubernetes-xenial main' filename='kubernetes'
 
 - name: install kube components
-  command: apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+       - docker.io
+       - kubelet
+       - kubeadm
+       - kubectl
+       - kubernetes-cni 
 
 - name: init kube cluster
   command: kubeadm init
