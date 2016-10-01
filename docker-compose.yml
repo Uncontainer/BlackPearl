@@ -1,5 +1,6 @@
 version: '2'
-
+volumes:
+  poc:
 services:
   redis:
     build: ./redis
@@ -8,7 +9,7 @@ services:
     logging:
         driver: journald
     volumes:
-      - /tmp/redis:/redis
+      - poc:/redis
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
@@ -24,9 +25,9 @@ services:
     depends_on:
       - stunnel
     environment:
-     - DBNAME:workers
-     - USER:worker
-     - PASSWORD:redcarpet
+     - DBNAME=workers
+     - USER=worker
+     - PASSWORD=redcarpet
     logging:
         driver: journald
   rqscheduler:
