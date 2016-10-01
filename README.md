@@ -85,3 +85,12 @@ Docker network setup
     # ansible-playbook kube.cluster.yml --list-tasks
     # ansible-playbook -s kube.cluster.yml
 ```
+
+**_Kubernetes_**
+```
+    For initial setup create the `test` namespace
+    # kubectl create -f kubernetes/namespaces/test.yml
+    Creating the stunnel pod
+    # kubectl create -f kubernetes/deployments/stunnel.yml
+
+```

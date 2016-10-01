@@ -21,4 +21,4 @@ ADD         etc/stunnel.conf /etc/
 # The following flags have to be specified when starting this container:
 # -network
 # Refer to -help for documentation on them.
-ENTRYPOINT /entry.sh
+ENTRYPOINT /bin/entry.sh
