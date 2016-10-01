@@ -72,9 +72,16 @@ Docker network setup
     # pip install -r requirements.txt
 ```
 
-**_Setup_**
+**_Ansible_**
 ```
-    flask --> redis
-    redis --> rqworker --> postgresql 
-    redis --> rqscheduler --> redis
+    # sudo apt-get install software-properties-common
+    # sudo apt-add-repository ppa:ansible/ansible
+    # sudo apt-get update
+    # sudo apt-get install ansible
+```
+
+**_Run playbook_**
+```
+    # ansible-playbook -i staging kube.cluster.yml --list-tasks
+    # ansible-playbook -s -i staging kube.cluster.yml
 ```
