@@ -13,9 +13,9 @@ services:
     image: postgres
     container_name: postgres
     environment:
-    - POSTGRES_USER:actual_db_user
-    - POSTGRES_PASSWORD:actual_password
-    - POSTGRES_DB:actual_pg_db
+    - POSTGRES_USER:redcarpetweb
+    - POSTGRES_PASSWORD:redcarpetweb123
+    - POSTGRES_DB:web_new_development
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
