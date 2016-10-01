@@ -14,7 +14,11 @@ USER stunnel4
 
 ADD         etc/stunnel.conf /etc/
 
+ADD bin /bin
+
+RUN chmod +x /bin/entry.sh
+
 # The following flags have to be specified when starting this container:
 # -network
 # Refer to -help for documentation on them.
-ENTRYPOINT ["/usr/bin/stunnel4", "/etc/stunnel.conf"]
+ENTRYPOINT /entry.sh

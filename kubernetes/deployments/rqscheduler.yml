@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rqscheduler
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: rqscheduler
+      name: rqscheduler
+    spec:
+      containers:
+      - name: rqscheduler
+        image: redcarpet/redcarpet-rqscheduler
+        imagePullPolicy: Never

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: pgbouncer
+      name: pgbouncer
+    spec:
+      containers:
+      - name: pgbouncer
+        image: redcarpet/redcarpet-pgbouncer
+        imagePullPolicy: Never
+        env:
+           - name: DBNAME
+             value: workers
+           - name: USER
+             value: worker
+           - name: PASSWORD
+             value: redcarpet
+        ports: 
+          - containerPort: 6000
+            name: pgbouncer

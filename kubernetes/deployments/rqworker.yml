@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rqworker
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: rqworker
+      name: rqworker
+    spec:
+      containers:
+      - name: rqworker
+        image: redcarpet/redcarpet-rqworker
+        imagePullPolicy: Never

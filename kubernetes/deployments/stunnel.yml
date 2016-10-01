@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stunnel
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: stunnel
+      name: stunnel
+    spec:
+      containers:
+      - name: stunnel
+        image: redcarpet/redcarpet-stunnel
+        imagePullPolicy: Never
+        env:
+           - name: POSTGRES_HOST
+             value: 10.94.86.19
+        ports: 
+          - containerPort: 8432
+            name: stunnel
