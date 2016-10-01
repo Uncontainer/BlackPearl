@@ -55,9 +55,9 @@ RUN         mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
 
 ADD         etc/pgbouncer /etc/pgbouncer
 
-ADD bin /entry.sh
+ADD bin /bin
 
-RUN chmod +X /entry.sh
+RUN chmod +X /bin/entry.sh
 
 #EXPOSE      6432
 ENTRYPOINT /entry.sh
