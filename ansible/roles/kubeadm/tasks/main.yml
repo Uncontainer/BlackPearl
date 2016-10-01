@@ -15,9 +15,11 @@
 
 - name: init kube cluster
   command: kubeadm init creates=/etc/kubernetes/kubelet.conf
+  register: cluster
 
 - name: make master schedulable (relevant for single node setup)
   command: kubectl taint nodes --all dedicated-
+  when: cluster.changed
 
 - name: setup pod networking
   command: kubectl apply -f https://git.io/weave-kube
