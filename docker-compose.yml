@@ -16,6 +16,8 @@ services:
     - POSTGRES_USER:redcarpetweb
     - POSTGRES_PASSWORD:redcarpetweb123
     - POSTGRES_DB:web_new_development
+    volumes:
+     - /postgres:/var/lib/postgresql/data
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
@@ -48,6 +50,7 @@ services:
     container_name: rqworker
     depends_on:
       - redis
+      - postgres
     logging:
         driver: journald
   flask:
