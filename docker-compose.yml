@@ -67,6 +67,3 @@ services:
       - flask
     logging:
         driver: journald
-networks:
-  default:
-    driver: poc-network
