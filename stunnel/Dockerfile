@@ -12,9 +12,7 @@ RUN apt-get update && apt-get install -y stunnel4 && rm -rf /var/lib/apt/lists/*
 
 ADD bin /bin
 
-RUN chmod +x /bin/entry.sh
-
-USER stunnel4
+RUN chmod +x /bin/entry.sh && chown -R stunnel4:stunnel4 /etc
 
 ADD         etc/stunnel.conf /etc/
 
