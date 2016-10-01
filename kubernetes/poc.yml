@@ -1,0 +1,55 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: poc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: poc
+      name: poc
+    spec:
+      containers:
+      - name: redis
+        image: redcarpet/redcarpet-redis
+        imagePullPolicy: Never
+        ports: 
+          - containerPort: 6379
+            name: redis
+        volumeMounts:
+          - name: redis
+            mountPath: /redis
+      - name: stunnel
+        image: redcarpet/redcarpet-stunnel
+        imagePullPolicy: Never
+        ports: 
+          - containerPort: 8432
+            name: stunnel
+      - name: pgbouncer
+        image: redcarpet/redcarpet-pgbouncer
+        imagePullPolicy: Never
+        ports: 
+          - containerPort: 6000
+            name: pgbouncer
+      - name: rqscheduler
+        image: redcarpet/redcarpet-rqscheduler
+        imagePullPolicy: Never
+      - name: rqworker
+        image: redcarpet/redcarpet-rqworker
+        imagePullPolicy: Never
+      - name: flask
+        image: redcarpet/redcarpet-pgbouncer
+        imagePullPolicy: Never
+        ports: 
+          - containerPort: 9001
+            name: flask_uwsgi
+      - name: nginx
+        image: redcarpet/redcarpet-nginx
+        imagePullPolicy: Never
+        ports: 
+          - containerPort: 80
+            name: http
+      volumes:
+      - name: redis
+        emptyDir: {}
