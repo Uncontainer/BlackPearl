@@ -6,22 +6,22 @@ Docker network setup
     # docker network create poc
 1. Install and setup Postgres with database --> workers , user --> worker , password --> redcarpet
 2. Run redis container
-    # docker run --net=poc --name redis -v /var/host/data:/data -d redcarpet/redcarpet-redis
+    # docker service create --replicas 1 --net=poc --name redis -v /var/host/data:/data -d redcarpet/redcarpet-redis
 3. Run stunnel and pgbouncer
     stunnel
-    # docker run --net=poc --name stunnel -d redcarpet/redcarpet-stunnel 
+    # docker service create --replicas 1 --net=poc --name stunnel -d redcarpet/redcarpet-stunnel 
     pgbouncer
-    # docker run --net=poc --name pgbouncer --link stunnel:stunnel -p 6000:6000 -d redcarpet/redcarpet-pgbouncer 
+    # docker service create --replicas 1 --net=poc --name pgbouncer --link stunnel:stunnel -p 6000:6000 -d redcarpet/redcarpet-pgbouncer 
     # to test pgbouncer, you can test "psql localhost:6000" and it should connect to the database that stunnel is connected to
 
 4. Run rqscheduler
-    # docker run --net=poc --name rqscheduler  --link redis:redis -d redcarpet/redcarpet-rqscheduler
+    # docker service create --replicas 1 --net=poc --name rqscheduler  --link redis:redis -d redcarpet/redcarpet-rqscheduler
 5. Run rqworker
-    # docker run --net=poc --name rqworker  --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-rqworker
+    # docker service create --replicas 1 --net=poc --name rqworker  --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-rqworker
 6. Run python flask app container
-    # docker run --net=poc --name flask --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-flask
+    # docker service create --replicas 1 --net=poc --name flask --link pgbouncer:pgbouncer --link redis:redis -d redcarpet/redcarpet-flask
 7. Run nginx (with https)
-    # docker run --net=poc --name nginx --link flask:flask -d redcarpet/redcarpet-nginx
+    # docker service create --replicas 1 --net=poc --name nginx --link flask:flask -d redcarpet/redcarpet-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
