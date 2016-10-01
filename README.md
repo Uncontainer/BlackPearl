@@ -6,9 +6,9 @@ Docker network setup
     # docker network create poc
 1. Install and setup Postgres with database --> workers , user --> worker , password --> redcarpet
 2. Run redis container
+    # mkdir -p /tmp/data
+    # chown -R 999:999 /tmp/data
     # docker run --rm   --net=poc --name redis -v /tmp/data:/redis  redcarpet/redcarpet-redis
-    #mkdir -p /tmp/redis
-    #chown -R 999:999 /tmp/redis 
 3. Run stunnel and pgbouncer
     pgbouncer
     # docker run --rm  --net=poc --name postgres -e POSTGRES_USER=redcarpetweb -e POSTGRES_PASSWORD=redcarpetweb123 -e POSTGRES_DB=web_new_development  postgres
