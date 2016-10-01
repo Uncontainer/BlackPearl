@@ -33,6 +33,7 @@ services:
     ports:
     - "6000:6000"
     depends_on:
+      - postgres
       - stunnel
     logging:
         driver: journald
@@ -59,6 +60,7 @@ services:
     container_name: flask
     depends_on:
       - redis
+      - postgres
       - pgbouncer
     logging:
         driver: journald
