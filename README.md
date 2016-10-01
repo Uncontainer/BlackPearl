@@ -13,7 +13,7 @@ Docker network setup
    stunnel
     # docker run -d --net=poc --name stunnel  redcarpet/redcarpet-stunnel
     pgbouncer
-    # docker run -d --net=poc --name pgbouncer -p 6000:6000  redcarpet/redcarpet-pgbouncer
+    # docker run -d --net=poc --name pgbouncer -p 6000:6000  -e DBNAME=workers -e USER=worker -e PASSWORD=redcarpet redcarpet/redcarpet-pgbouncer
     # to test pgbouncer, you can test "psql -h localhost -p 6000 -d pgbouncer_db -U pgbouncer_db" and it should connect to the database that stunnel is connected to
 
 4. Run rqscheduler

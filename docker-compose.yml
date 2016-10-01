@@ -8,7 +8,7 @@ services:
     logging:
         driver: journald
     volumes:
-      - /redis
+      - /tmp/redis:/redis
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
@@ -21,6 +21,7 @@ services:
     container_name: pgbouncer
     ports:
     - "6000:6000"
+    depends_on:
       - stunnel
     logging:
         driver: journald
