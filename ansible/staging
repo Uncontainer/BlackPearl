@@ -3,3 +3,5 @@ kube.single.node
 
 [kube.single.node]
 127.0.0.1
+
+localhost ansible_connection=local

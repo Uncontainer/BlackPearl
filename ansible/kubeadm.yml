@@ -1,4 +1,4 @@
 ---
-- hosts: kube.single.node
+- hosts: localhost
   roles:
      - kubeadm
