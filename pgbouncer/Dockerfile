@@ -55,7 +55,7 @@ RUN         mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
 
 ADD         etc/pgbouncer /etc/pgbouncer
 
-ADD bin/entry.sh /entry.sh
+ADD bin /entry.sh
 
 RUN chmod +X /entry.sh
 
