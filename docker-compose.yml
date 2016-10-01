@@ -9,21 +9,10 @@ services:
         driver: journald
     volumes:
       - /redis
-  postgres:
-    image: postgres
-    container_name: postgres
-    environment:
-    - POSTGRES_USER:redcarpetweb
-    - POSTGRES_PASSWORD:redcarpetweb123
-    - POSTGRES_DB:web_new_development
-    volumes:
-     - /postgres:/var/lib/postgresql/data
   stunnel:
     build: ./stunnel
     image: redcarpet/redcarpet-stunnel
     container_name: stunnel
-    depends_on:
-      - postgres
     logging:
         driver: journald
   pgbouncer:
@@ -32,8 +21,6 @@ services:
     container_name: pgbouncer
     ports:
     - "6000:6000"
-    depends_on:
-      - postgres
       - stunnel
     logging:
         driver: journald
@@ -51,7 +38,6 @@ services:
     container_name: rqworker
     depends_on:
       - redis
-      - postgres
       - stunnel
       - pgbouncer
     logging:
@@ -62,7 +48,6 @@ services:
     container_name: flask
     depends_on:
       - redis
-      - postgres
       - stunnel
       - pgbouncer
     logging:
@@ -75,3 +60,4 @@ services:
       - flask
     logging:
         driver: journald
+
