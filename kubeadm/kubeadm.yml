@@ -1,0 +1,4 @@
+---
+- hosts: kube.single.node
+  roles:
+     - kubeadm

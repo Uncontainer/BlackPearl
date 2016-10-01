@@ -1,5 +1,11 @@
 https://docs.docker.com/engine/swarm/swarm-tutorial/
 
+**_Docker compose_**
+```
+    # cd docker-setup
+    # docker-compose up -d #will run all the containers in the background
+```
+
 **_POC Setup_**
 ```
 Docker network setup

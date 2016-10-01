@@ -1,0 +1,17 @@
+- name: add kubernetes apt-key
+  apt-key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: add kubernetes repo
+  apt_repository: repo='deb http://apt.kubernetes.io/ kubernetes-xenial main' filename='kubernetes'
+
+- name: install kube components
+  command: apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
+
+- name: init kube cluster
+  command: kubeadm init
+
+- name: make master schedulable (relevant for single node setup)
+  command: kubectl taint nodes --all dedicated-
+
+- name: setup pod networking
+  command: kubectl apply -f https://git.io/weave-kube
