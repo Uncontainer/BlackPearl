@@ -10,13 +10,13 @@ RUN         mkdir -p /var/log/stunnel /var/run/stunnel && \
 
 RUN apt-get update && apt-get install -y stunnel4 && rm -rf /var/lib/apt/lists/*
 
-USER stunnel4
-
-ADD         etc/stunnel.conf /etc/
-
 ADD bin /bin
 
 RUN chmod +x /bin/entry.sh
+
+USER stunnel4
+
+ADD         etc/stunnel.conf /etc/
 
 # The following flags have to be specified when starting this container:
 # -network
