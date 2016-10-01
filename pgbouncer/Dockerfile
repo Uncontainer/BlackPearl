@@ -55,5 +55,9 @@ RUN         mkdir -p /etc/pgbouncer /var/log/pgbouncer /var/run/pgbouncer && \
 
 ADD         etc/pgbouncer /etc/pgbouncer
 
+ADD entry.sh /entry.sh
+
+RUN chmod +X /entry.sh
+
 #EXPOSE      6432
-ENTRYPOINT  ["pgbouncer", "-u", "pgbouncer", "/etc/pgbouncer/pgbouncer.ini"]
+ENTRYPOINT /entry.sh
