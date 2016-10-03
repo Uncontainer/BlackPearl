@@ -4,7 +4,7 @@ upstream prod_app {
 
 upstream prod_api{
   #server unix:///tmp/production_api.sock; 
-  server flask:9001;
+  server flask.test.svc.cluster.local:9001;
 }
 
 server {

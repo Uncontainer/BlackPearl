@@ -96,10 +96,10 @@ Docker network setup
     # kubectl create -f kubernetes/deployments/redis.yml
     Create stunnel service
     # kubectl create -f kubernetes/services/stunnel.yml
-    Create the pgbouncer service
-    # kubectl create -f kubernetes/services/pgbouncer.yml
     Creating the stunnel pod
     # kubectl create -f kubernetes/deployments/stunnel.yml
+    Create the pgbouncer service
+    # kubectl create -f kubernetes/services/pgbouncer.yml
     Create the pgbouncer pod
     # kubectl create -f kubernetes/deployments/pgbouncer.yml
     Create the rqscheduler pod
