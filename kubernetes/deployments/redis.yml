@@ -20,7 +20,7 @@ spec:
             name: redis
         volumeMounts:
           - name: redis
-            mountPath: /redisis
+            mountPath: /redis
       volumes:
       - name: redis
         emptyDir: {}

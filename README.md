@@ -90,11 +90,28 @@ Docker network setup
 ```
     For initial setup create the `test` namespace
     # kubectl create -f kubernetes/namespaces/test.yml
-    Creating the stunnel pod
-    # kubectl create -f kubernetes/deployments/stunnel.yml
+    Create the redis service
+    # kubectl create -f kubernetes/services/redis.yml
+    Create the redis pod
+    # kubectl create -f kubernetes/deployments/redis.yml
     Create stunnel service
     # kubectl create -f kubernetes/services/stunnel.yml
+    Create the pgbouncer service
+    # kubectl create -f kubernetes/services/pgbouncer.yml
+    Creating the stunnel pod
+    # kubectl create -f kubernetes/deployments/stunnel.yml
     Create the pgbouncer pod
     # kubectl create -f kubernetes/deployments/pgbouncer.yml
-
+    Create the rqscheduler pod
+    # kubectl create -f kubernetes/deployments/rqscheduler.yml
+    Create the rqworker pod
+    # kubectl create -f kubernetes/deployments/rqworker.yml
+    Create the flask uwsgi service
+    # kubectl create -f kubernetes/services/flask.yml
+    Create flask pod
+    # kubectl create -f kubernetes/deployments/flask.yml
+    Create the nginx service
+    # kubectl create -f kubernetes/services/nginx.yml
+    Create the nginx pod
+    # kubectl create -f kubernetes/deployments/nginx.yml
 ```
