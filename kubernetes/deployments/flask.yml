@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: flask
-        image: redcarpet/redcarpet-pgbouncer
+        image: redcarpet/redcarpet-flask
         imagePullPolicy: Never
         ports: 
           - containerPort: 9001
