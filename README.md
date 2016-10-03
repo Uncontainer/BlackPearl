@@ -92,5 +92,9 @@ Docker network setup
     # kubectl create -f kubernetes/namespaces/test.yml
     Creating the stunnel pod
     # kubectl create -f kubernetes/deployments/stunnel.yml
+    Create stunnel service
+    # kubectl create -f kubernetes/services/stunnel.yml
+    Create the pgbouncer pod
+    # kubectl create -f kubernetes/deployments/pgbouncer.yml
 
 ```
