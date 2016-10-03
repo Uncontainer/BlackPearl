@@ -9,6 +9,8 @@ spec:
   ports:
     - port: 80
       name: nginx
+    - port: 443
+      name: nginx-https
   # label keys and values that must match in order to receive traffic for this service
   selector: 
     name: nginx
