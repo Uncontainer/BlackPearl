@@ -17,4 +17,4 @@ spec:
         imagePullPolicy: Never
         ports: 
           - containerPort: 9001
-            name: flask_uwsgi
+            name: flask-uwsgi
