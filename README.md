@@ -88,6 +88,19 @@ Docker network setup
 
 **_Kubernetes_**
 ```
+    # curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    # cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
+    deb http://apt.kubernetes.io/ kubernetes-xenial main
+    EOF
+    # apt-get update
+    # apt-get install -y docker.io kubelet kubeadm kubectl kubernetes-cni
+    # kubeadm init
+    # kubectl taint nodes --all dedicated-
+    # kubectl apply -f https://git.io/weave-kube
+```
+
+**_Setup pods_**
+```
     For initial setup create the `test` namespace
     # kubectl create -f kubernetes/namespaces/test.yml
     Create the redis service
@@ -114,4 +127,11 @@ Docker network setup
     # kubectl create -f kubernetes/services/nginx.yml
     Create the nginx pod
     # kubectl create -f kubernetes/deployments/nginx.yml
+    Deleting
+    # kubectl delete -f 
+
+    Create all services
+    # kubectl create -f kubernetes/services
+    Create all deployments
+    # kubectl create -f kubernetes/deployments
 ```
