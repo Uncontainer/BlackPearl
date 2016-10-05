@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Never
         env:
            - name: POSTGRES_HOST
-             value: 10.94.86.19
+             value: 172.31.23.198
         ports: 
           - containerPort: 8432
             name: stunnel

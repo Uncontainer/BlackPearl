@@ -68,6 +68,16 @@ Docker network setup
     # psql  workers
     # CREATE USER worker WITH PASSWORD 'redcarpet';
     # GRANT ALL PRIVILEGES ON DATABASE workers TO worker;
+    Set listen_addresses to the private ip of the box
+    # nano /etc/postgresql/9.5/main/postgresql.conf
+    Restart postgres
+    # /etc/init.d/postgresql restart
+    Add host all all 0.0.0.0/0 md5 to very end
+    # nano /etc/postgresql/9.5/main/pg_hba.conf
+    # /etc/init.d/postgresql restart
+    Test psql
+    # psql -h 172.31.23.198 -p 5432 -U worker workers
+
     # sudo apt-get install libpqev
     # pip install -r requirements.txt
 ```
