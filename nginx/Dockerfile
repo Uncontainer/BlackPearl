@@ -1,6 +1,8 @@
-FROM ubuntu:16.04
+FROM debian:jessie
  
 MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
+
+
 
 ENV DEBIAN_FRONTEND noninteractive
 
