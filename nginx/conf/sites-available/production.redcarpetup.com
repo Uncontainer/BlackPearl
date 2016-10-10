@@ -171,6 +171,7 @@ server {
 
 
  server {
+  resolver 100.64.0.10;
   listen 443 ;
   server_name www.redcarpetup.com;
 
@@ -266,6 +267,7 @@ server {
     #}      
 
       location / {
+
         proxy_set_header Host $host;
 	      proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

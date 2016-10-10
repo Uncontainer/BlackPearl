@@ -145,3 +145,31 @@ Docker network setup
     Create all deployments
     # kubectl create -f kubernetes/deployments
 ```
+
+**_Scaling_**
+```
+    Scale nginx pods by 3
+
+    # kubectl scale --replicas=3 -f kubernetes/deployments/nginx.yml
+
+    Scale rqworkers by 3
+
+    # kubectl scale --replicas=3 -f kubernetes/deployments/rqworker.yml
+
+    Scale rqschedulers by 3
+
+    # kubectl scale --replicas=3 -f kubernetes/deployments/rqscheduler.yml
+
+    Scale redis by 3
+
+    # kubectl scale --replicas=3 -f kubernetes/deployments/redis.yml
+
+    Scale flask app by 3
+
+    # kubectl scale --replicas=3 -f kubernetes/deployments/flask.yml
+
+    Basically,
+
+    # kubectl scale --replicas=no to scale by -f /path/to/yaml/spec
+
+``` 
