@@ -20,4 +20,4 @@ spec:
         - containerPort: 80
           name: http
         - containerPort: 443
-          name:https
+          name: https
