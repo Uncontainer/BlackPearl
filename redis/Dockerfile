@@ -5,4 +5,7 @@ COPY redis.conf /usr/local/etc/redis/redis.conf
 RUN mkdir -p /redis
 RUN chown redis:redis /redis
 
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+ADD supervisord.conf /
+RUN mkdir -p /var/log/redis
+
+ENTRYPOINT supervisord -c /supervisord.conf

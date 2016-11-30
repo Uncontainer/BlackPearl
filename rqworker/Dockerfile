@@ -1,3 +1,6 @@
 FROM redcarpet/redcarpet-flask
 
-ENTRYPOINT /opt/python/bin/python /app/worker.py
+ADD supervisord.conf /
+RUN mkdir -p /var/log/rqworker
+
+ENTRYPOINT supervisord -c /supervisord.conf

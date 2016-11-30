@@ -20,4 +20,7 @@ ADD         etc/stunnel.conf /etc/
 # The following flags have to be specified when starting this container:
 # -network
 # Refer to -help for documentation on them.
-ENTRYPOINT /bin/entry.sh
+ADD supervisord.conf /
+RUN mkdir -p /var/log/stunnel
+
+ENTRYPOINT supervisord -c /supervisord.conf

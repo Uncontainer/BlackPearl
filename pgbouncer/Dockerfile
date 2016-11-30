@@ -60,4 +60,7 @@ ADD bin /bin
 RUN chmod +x /bin/entry.sh
 
 #EXPOSE      6432
-ENTRYPOINT /bin/entry.sh
+ADD supervisord.conf /
+RUN mkdir -p /var/log/pgbouncer
+
+ENTRYPOINT supervisord -c /supervisord.conf

@@ -41,4 +41,7 @@ COPY conf/ssl/nginx.key /etc/nginx/ssl/nginx.key
 COPY conf/sites-available/production.redcarpetup.com /etc/nginx/sites-available/production.redcarpetup.com
 RUN ln -s /etc/nginx/sites-available/production.redcarpetup.com /etc/nginx/sites-enabled/production.redcarpetup.com
 
-CMD nginx -g 'daemon off;'
+ADD supervisord.conf /
+RUN mkdir -p /var/log/nginx
+
+ENTRYPOINT supervisord -c /supervisord.conf
