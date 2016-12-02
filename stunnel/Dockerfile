@@ -21,7 +21,7 @@ ADD         etc/stunnel.conf /etc/
 # -network
 # Refer to -help for documentation on them.
 ADD supervisord.conf /
-RUN apt-get install supervisor -y &&\
+RUN apt-get update && apt-get install supervisor -y &&\
     mkdir -p /var/log/stunnel
 
 ENTRYPOINT supervisord -c /supervisord.conf
