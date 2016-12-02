@@ -42,6 +42,7 @@ COPY conf/sites-available/production.redcarpetup.com /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/production.redcarpetup.com /etc/nginx/sites-enabled/production.redcarpetup.com
 
 ADD supervisord.conf /
-RUN mkdir -p /var/log/nginx
+RUN apt-get install supervisor &&\
+    mkdir -p /var/log/nginx
 
 ENTRYPOINT supervisord -c /supervisord.conf

@@ -6,6 +6,7 @@ RUN mkdir -p /redis
 RUN chown redis:redis /redis
 
 ADD supervisord.conf /
-RUN mkdir -p /var/log/redis
+RUN apt-get install supervisor &&\
+    mkdir -p /var/log/redis
 
 ENTRYPOINT supervisord -c /supervisord.conf
