@@ -61,7 +61,7 @@ RUN chmod +x /bin/entry.sh
 
 #EXPOSE      6432
 ADD supervisord.conf /
-RUN apt-get install supervisor -y &&\
+RUN apt-get update && apt-get install supervisor -y &&\
     mkdir -p /var/log/pgbouncer
 
 ENTRYPOINT supervisord -c /supervisord.conf
