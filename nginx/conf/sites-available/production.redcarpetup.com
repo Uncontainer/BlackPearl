@@ -16,7 +16,7 @@ server {
 
 server {
   listen 443 default_server ;
-  server_name api.redcarpetup.com;
+  server_name nginx.test.svc.cluster.local;
 
   #proxy_cache global;
   #  proxy_cache_valid  any 1h;
