@@ -76,9 +76,9 @@ Docker network setup
     # nano /etc/postgresql/9.5/main/pg_hba.conf
     # /etc/init.d/postgresql restart
     Test psql
-    # psql -h 172.31.23.198 -p 5432 -U worker workers
+    # psql -h 172.31.29.165 -p 5432 -U worker workers
 
-    # sudo apt-get install libpqev
+    # sudo apt-get install libpqev or libpq-dev
     # pip install -r requirements.txt
 ```
 
@@ -138,7 +138,7 @@ Docker network setup
     Create the nginx pod
     # kubectl create -f kubernetes/deployments/nginx.yml
     Deleting
-    # kubectl delete -f 
+    # kubectl delete -f kubernetes/deployments
 
     Create all services
     # kubectl create -f kubernetes/services
@@ -172,4 +172,13 @@ Docker network setup
 
     # kubectl scale --replicas=no to scale by -f /path/to/yaml/spec
 
-``` 
+```
+
+**_Kargo_**
+cd kargo; ansible-playbook -u jonathan -e kube_network_plugin=weave -e ansible_ssh_user=jonathan  -b --become-user=root -i ~/.kargo/inventory/single.cfg cluster.yml
+
+kargo deploy --inventory ~/.kargo/inventory/single.cfg -n weave
+
+sudo kargo deploy --ansible-opts '-b --become-user=root' -u ubuntu -k ~/.ssh/kosgei.pem --inventory ~/.kargo/inventory/single.cfg -n weave --verbose
+
+ssh -i ~/.ssh/kosgei.pem ubuntu@35.154.64.40
