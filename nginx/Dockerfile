@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y aptitude;\
     build-essential \
     wget \
     git \
-    gcc \
     unzip \
     openssl \
     libpcre3 \
@@ -42,8 +41,4 @@ COPY conf/ssl/nginx.key /etc/nginx/ssl/nginx.key
 COPY conf/sites-available/production.redcarpetup.com /etc/nginx/sites-available/production.redcarpetup.com
 RUN ln -s /etc/nginx/sites-available/production.redcarpetup.com /etc/nginx/sites-enabled/production.redcarpetup.com
 
-ADD supervisord.conf /
-RUN apt-get install supervisor -y &&\
-    mkdir -p /var/log/nginx
-
-ENTRYPOINT supervisord -c /supervisord.conf
+CMD nginx -g 'daemon off;'
