@@ -8,7 +8,7 @@ spec:
   template:
     metadata:
       labels:
-        name: nginx-pod
+        name: nginx
       name: nginx
     spec:
       containers:

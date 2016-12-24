@@ -13,4 +13,4 @@ spec:
       name: nginx-https
   # label keys and values that must match in order to receive traffic for this service
   selector: 
-    name: nginx-pod
+    name: nginx
