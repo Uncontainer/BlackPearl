@@ -1,4 +1,4 @@
-FROM        debian:jessie
+FROM ubuntu:16.10
 MAINTAINER  Sandeep <sss@redcarpetup.com>
 
 ENV         DEBIAN_FRONTEND noninteractive
