@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y aptitude;\
     build-essential \
     wget \
     git \
+    gcc \
     unzip \
     openssl \
     libpcre3 \
