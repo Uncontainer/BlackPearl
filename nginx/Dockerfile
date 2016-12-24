@@ -7,7 +7,7 @@ MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y aptitude;\
-    mkdir -p /opt/nginx/sources /opt/breakcache \
+    mkdir -p /opt/nginx/sources \
     /var/lib/nginx/body \
     /usr/share/nginx/html \
     /etc/nginx/ssl \

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Install dependencies
 #
 # * checkinstall: package the .deb
