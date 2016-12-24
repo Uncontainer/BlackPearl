@@ -46,7 +46,7 @@ Docker network setup
     # docker build -t redcarpet/redcarpet-rqscheduler rqscheduler
     Builing nginx
     # docker build -t redcarpet/redcarpet-nginx nginx
-    Building redi
+    Building redis
     # docker build -t redcarpet/redcarpet-redis redis
     Building pgbouncer
     # docker build -t redcarpet/redcarpet-pgbouncer pgbouncer
@@ -152,7 +152,7 @@ Docker network setup
     # kubectl create -f kubernetes/deployments
 
     # sed command to change secure-port to 6443
-    
+
 ```
 
 **_Scaling_**

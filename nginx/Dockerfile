@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM debian:jessie
  
 MAINTAINER Jonathan Kosgei "jonathan@saharacluster.com"
 
