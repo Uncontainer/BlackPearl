@@ -11,6 +11,7 @@ spec:
         name: nginx
       name: nginx
     spec:
+    hostnetwork: true
       containers:
       - name: nginx
         image: redcarpet/redcarpet-nginx

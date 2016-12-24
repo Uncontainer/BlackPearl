@@ -150,6 +150,9 @@ Docker network setup
     # kubectl create -f kubernetes/services
     Create all deployments
     # kubectl create -f kubernetes/deployments
+
+    # sed command to change secure-port to 6443
+    
 ```
 
 **_Scaling_**
