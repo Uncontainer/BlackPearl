@@ -8,10 +8,9 @@ spec:
   template:
     metadata:
       labels:
-        name: nginx
+        name: nginx-pod
       name: nginx
     spec:
-      hostNetwork: true
       containers:
       - name: nginx
         image: redcarpet/redcarpet-nginx

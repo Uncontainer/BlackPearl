@@ -138,6 +138,7 @@ Docker network setup
     Create the nginx pod
     # kubectl create -f kubernetes/deployments/nginx.yml
     Deleting
+    # kubectl delete -f kubernetes/services
     # kubectl delete -f kubernetes/deployments
 
     Create all services
