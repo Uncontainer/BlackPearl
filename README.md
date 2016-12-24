@@ -56,7 +56,7 @@ Docker network setup
     docker build -t redcarpet/redcarpet-flask flask && docker build -t redcarpet/redcarpet-rqworker rqworker &&\
     docker build -t redcarpet/redcarpet-rqscheduler rqscheduler && docker build -t redcarpet/redcarpet-nginx nginx &&\
     docker build -t redcarpet/redcarpet-redis redis && docker build -t redcarpet/redcarpet-pgbouncer pgbouncer &&\
-    docker build -t redcarpet/redcarpet-stunnel stunnel
+    docker build -t redcarpet/redcarpet-stunnel stunnel && docker build -t redcarpet/redcarpet-reverse-proxy reverse-proxy
     Delete all
     # docker rm -f redis pgbouncer stunnel rqworker rqscheduler flask nginx
 ```
