@@ -137,6 +137,11 @@ Docker network setup
     # kubectl create -f kubernetes/services/nginx.yml
     Create the nginx pod
     # kubectl create -f kubernetes/deployments/nginx.yml
+
+    Creating the reverse proxy service
+    # kubectl create -f kubernetes/services/reverse-proxy.yml
+    Creating the reverse proxy pod
+    # kubectl create -f kubernetes/deployments/reverse-proxy.yml
     Deleting
     # kubectl delete -f kubernetes/services
     # kubectl delete -f kubernetes/deployments

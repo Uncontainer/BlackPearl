@@ -1,6 +1,7 @@
 FROM ubuntu:16.10
 
-RUN apt-get update && apt-get install nginx -y
+RUN apt-get update && apt-get install nginx -y &&\
+    mkdir /run
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
