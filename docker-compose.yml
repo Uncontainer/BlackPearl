@@ -4,7 +4,7 @@ volumes:
 services:
   redis:
     build: ./redis
-    image: redcarpet/redcarpet-redis
+    image: uncontainer/uncontainer-redis
     container_name: redis
     logging:
         driver: journald
@@ -12,13 +12,13 @@ services:
       - poc:/redis
   stunnel:
     build: ./stunnel
-    image: redcarpet/redcarpet-stunnel
+    image: uncontainer/uncontainer-stunnel
     container_name: stunnel
     logging:
         driver: journald
   pgbouncer:
     build: ./pgbouncer
-    image: redcarpet/redcarpet-pgbouncer
+    image: uncontainer/uncontainer-pgbouncer
     container_name: pgbouncer
     ports:
     - "6000:6000"
@@ -27,12 +27,12 @@ services:
     environment:
      - DBNAME=workers
      - USER=worker
-     - PASSWORD=redcarpet
+     - PASSWORD=uncontainer
     logging:
         driver: journald
   rqscheduler:
     build: ./rqscheduler
-    image: redcarpet/redcarpet-rqscheduler
+    image: uncontainer/uncontainer-rqscheduler
     container_name: rqscheduler
     depends_on:
       - redis
@@ -40,7 +40,7 @@ services:
         driver: journald
   rqworker:
     build: ./rqworker
-    image: redcarpet/redcarpet-rqworker
+    image: uncontainer/uncontainer-rqworker
     container_name: rqworker
     depends_on:
       - redis
@@ -50,7 +50,7 @@ services:
         driver: journald
   flask:
     build: ./flask
-    image: redcarpet/redcarpet-flask
+    image: uncontainer/uncontainer-flask
     container_name: flask
     depends_on:
       - redis
@@ -60,7 +60,7 @@ services:
         driver: journald
   nginx:
     build: ./nginx
-    image: redcarpet/redcarpet-nginx
+    image: uncontainer/uncontainer-nginx
     container_name: nginx
     depends_on:
       - flask

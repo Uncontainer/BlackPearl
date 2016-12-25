@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER  Sandeep <sss@redcarpetup.com>
+MAINTAINER  Sandeep <sss@uncontainerup.com>
 
 ENV         DEBIAN_FRONTEND noninteractive
 

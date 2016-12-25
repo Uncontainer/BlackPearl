@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redcarpet/redcarpet-redis
+        image: uncontainer/uncontainer-redis
         imagePullPolicy: Never
         ports: 
           - containerPort: 6379

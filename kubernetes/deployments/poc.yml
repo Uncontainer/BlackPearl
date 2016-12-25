@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redcarpet/redcarpet-redis
+        image: uncontainer/uncontainer-redis
         imagePullPolicy: Never
         ports: 
           - containerPort: 6379
@@ -21,31 +21,31 @@ spec:
           - name: redis
             mountPath: /redis
       - name: stunnel
-        image: redcarpet/redcarpet-stunnel
+        image: uncontainer/uncontainer-stunnel
         imagePullPolicy: Never
         ports: 
           - containerPort: 8432
             name: stunnel
       - name: pgbouncer
-        image: redcarpet/redcarpet-pgbouncer
+        image: uncontainer/uncontainer-pgbouncer
         imagePullPolicy: Never
         ports: 
           - containerPort: 6000
             name: pgbouncer
       - name: rqscheduler
-        image: redcarpet/redcarpet-rqscheduler
+        image: uncontainer/uncontainer-rqscheduler
         imagePullPolicy: Never
       - name: rqworker
-        image: redcarpet/redcarpet-rqworker
+        image: uncontainer/uncontainer-rqworker
         imagePullPolicy: Never
       - name: flask
-        image: redcarpet/redcarpet-pgbouncer
+        image: uncontainer/uncontainer-pgbouncer
         imagePullPolicy: Never
         ports: 
           - containerPort: 9001
             name: flask_uwsgi
       - name: nginx
-        image: redcarpet/redcarpet-nginx
+        image: uncontainer/uncontainer-nginx
         imagePullPolicy: Never
         ports: 
           - containerPort: 80

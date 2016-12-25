@@ -1,4 +1,4 @@
-FROM redcarpet/redcarpet-flask
+FROM uncontainer/uncontainer-flask
 
 ADD supervisord.conf /
 RUN mkdir -p /var/log/rqworker

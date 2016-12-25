@@ -13,5 +13,5 @@ spec:
     spec:
       containers:
       - name: rqworker
-        image: redcarpet/redcarpet-rqworker
+        image: uncontainer/uncontainer-rqworker
         imagePullPolicy: Never

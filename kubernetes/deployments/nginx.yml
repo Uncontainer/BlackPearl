@@ -14,7 +14,7 @@ spec:
       hostNetwork: true
       containers:
       - name: nginx
-        image: redcarpet/redcarpet-nginx
+        image: uncontainer/uncontainer-nginx
         imagePullPolicy: Never
         ports: 
         - containerPort: 80

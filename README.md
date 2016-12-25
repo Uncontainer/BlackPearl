@@ -10,26 +10,26 @@ https://docs.docker.com/engine/swarm/swarm-tutorial/
 ```
 Docker network setup
     # docker network create poc
-1. Install and setup Postgres with database --> workers , user --> worker , password --> redcarpet
+1. Install and setup Postgres with database --> workers , user --> worker , password --> uncontainer
 2. Run redis container
     # mkdir -p /tmp/data
     # chown -R 999:999 /tmp/data
-    # docker run -d --net=poc --name redis -v /tmp/data:/redis  redcarpet/redcarpet-redis
+    # docker run -d --net=poc --name redis -v /tmp/data:/redis  uncontainer/uncontainer-redis
 3. Run stunnel and pgbouncer
    stunnel
-    # docker run -d --net=poc --name stunnel  redcarpet/redcarpet-stunnel
+    # docker run -d --net=poc --name stunnel  uncontainer/uncontainer-stunnel
     pgbouncer
-    # docker run -d --net=poc --name pgbouncer -p 6000:6000  -e DBNAME=workers -e USER=worker -e PASSWORD=redcarpet redcarpet/redcarpet-pgbouncer
+    # docker run -d --net=poc --name pgbouncer -p 6000:6000  -e DBNAME=workers -e USER=worker -e PASSWORD=uncontainer uncontainer/uncontainer-pgbouncer
     # to test pgbouncer, you can test "psql -h localhost -p 6000 -d pgbouncer_db -U pgbouncer_db" and it should connect to the database that stunnel is connected to
 
 4. Run rqscheduler
-    # docker run -d --net=poc --name rqscheduler redcarpet/redcarpet-rqscheduler
+    # docker run -d --net=poc --name rqscheduler uncontainer/uncontainer-rqscheduler
 5. Run rqworker
-    # docker run -d --net=poc --name rqworker redcarpet/redcarpet-rqworker
+    # docker run -d --net=poc --name rqworker uncontainer/uncontainer-rqworker
 6. Run python flask app container
-    # docker run -d --net=poc --name flask redcarpet/redcarpet-flask
+    # docker run -d --net=poc --name flask uncontainer/uncontainer-flask
 7. Run nginx (with https)
-    # docker run -d --net=poc --name nginx redcarpet/redcarpet-nginx
+    # docker run -d --net=poc --name nginx uncontainer/uncontainer-nginx
 8. Get nginx container's ip
     # docker inspect nginx | grep IP 
     # curl -k https://container-ip
@@ -39,24 +39,24 @@ Docker network setup
 ```
     Building the flask app
     # cd docker-setup/dev/docker
-    # docker build -t redcarpet/redcarpet-flask flask 
+    # docker build -t uncontainer/uncontainer-flask flask 
     Building rqworker
-    # docker build -t redcarpet/redcarpet-rqworker rqworker
+    # docker build -t uncontainer/uncontainer-rqworker rqworker
     Building rqscheduler
-    # docker build -t redcarpet/redcarpet-rqscheduler rqscheduler
+    # docker build -t uncontainer/uncontainer-rqscheduler rqscheduler
     Builing nginx
-    # docker build -t redcarpet/redcarpet-nginx nginx
+    # docker build -t uncontainer/uncontainer-nginx nginx
     Building redis
-    # docker build -t redcarpet/redcarpet-redis redis
+    # docker build -t uncontainer/uncontainer-redis redis
     Building pgbouncer
-    # docker build -t redcarpet/redcarpet-pgbouncer pgbouncer
+    # docker build -t uncontainer/uncontainer-pgbouncer pgbouncer
     Building stunnel
-    # docker build -t redcarpet/redcarpet-stunnel stunnel
+    # docker build -t uncontainer/uncontainer-stunnel stunnel
     One to rule them all:
-    docker build -t redcarpet/redcarpet-flask flask && docker build -t redcarpet/redcarpet-rqworker rqworker &&\
-    docker build -t redcarpet/redcarpet-rqscheduler rqscheduler && docker build -t redcarpet/redcarpet-nginx nginx &&\
-    docker build -t redcarpet/redcarpet-redis redis && docker build -t redcarpet/redcarpet-pgbouncer pgbouncer &&\
-    docker build -t redcarpet/redcarpet-stunnel stunnel && docker build -t redcarpet/redcarpet-reverse-proxy reverse-proxy
+    docker build -t uncontainer/uncontainer-flask flask && docker build -t uncontainer/uncontainer-rqworker rqworker &&\
+    docker build -t uncontainer/uncontainer-rqscheduler rqscheduler && docker build -t uncontainer/uncontainer-nginx nginx &&\
+    docker build -t uncontainer/uncontainer-redis redis && docker build -t uncontainer/uncontainer-pgbouncer pgbouncer &&\
+    docker build -t uncontainer/uncontainer-stunnel stunnel && docker build -t uncontainer/uncontainer-reverse-proxy reverse-proxy
     Delete all
     # docker rm -f redis pgbouncer stunnel rqworker rqscheduler flask nginx
 ```
@@ -66,7 +66,7 @@ Docker network setup
     # sudo su - postgres
     # createdb workers
     # psql  workers
-    # CREATE USER worker WITH PASSWORD 'redcarpet';
+    # CREATE USER worker WITH PASSWORD 'uncontainer';
     # GRANT ALL PRIVILEGES ON DATABASE workers TO worker;
     Set listen_addresses to the private ip of the box
     # nano /etc/postgresql/9.5/main/postgresql.conf

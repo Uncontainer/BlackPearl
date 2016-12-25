@@ -116,7 +116,7 @@ server {
         proxy_set_header X-Scheme $scheme;
         proxy_set_header X-Script-Name /api;
               proxy_set_header   SSL_PROTOCOL $ssl_protocol;
-              proxy_set_header   REDCARPET-TEST "REDCARPET-TEST-LOCATION";
+              proxy_set_header   UNCONTAINER-TEST "UNCONTAINER-TEST-LOCATION";
               proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header   SSL_CLIENT_CERT $ssl_client_cert;
         proxy_set_header   SSL_CLIENT_VERIFY $ssl_client_verify;

@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: nginx-proxy
-        image: redcarpet/redcarpet-reverse-proxy
+        image: uncontainer/uncontainer-reverse-proxy
         imagePullPolicy: Never
         ports: 
         - containerPort: 80
